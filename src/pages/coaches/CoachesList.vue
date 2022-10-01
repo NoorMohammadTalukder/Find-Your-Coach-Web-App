@@ -1,10 +1,12 @@
 <template>
-    <section>
-        Filter
-    </section>
+  <section>Filter</section>
 
-    <section>
+  <section>
+    <div class="controls">
 
+      <button>Refresh</button>
+      <router-link to="/register">Register as Coach</router-link>
 
-    </section>
+    </div>
+  </section>
 </template>
