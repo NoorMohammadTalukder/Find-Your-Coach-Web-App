@@ -8,7 +8,7 @@
       <div class="controls">
         <base-button :mode="outline">Refresh</base-button>
         <!-- <button>Refresh</button> -->
-        <base-button link to="/register">Register as Coach</base-button>
+        <base-button v-if="!isCoach" link to="/register">Register as Coach</base-button>
         <!-- <router-link to="/register">Register as Coach</router-link> -->
       </div>
 
@@ -37,46 +37,47 @@ import BaseButton from '../../components/ui/BaseButton.vue';
 import CoachFilter from '../../components/coaches/CoachFilter.vue';
 // import BaseCard from '../../components/ui/BaseCard.vue'
 export default {
-  components: { CoachItem, BaseButton,CoachFilter },
-  data(){
-    return{
-      activeFilters:{
-                frontend:true,
-                backend:true,
-                career:true,
-            }
-    }
+  components: { CoachItem, BaseButton, CoachFilter },
+
+  data() {
+    return {
+      activeFilters: {
+        frontend: true,
+        backend: true,
+        career: true,
+      },
+    };
   },
   computed: {
     filteredCoaches() {
       // console.log(this.$store.getters["coaches/coaches"]);
-      const coaches= this.$store.getters['coaches/coaches'];
-      return coaches.filter(coach=>{
-        if(this.activeFilters.frontend && coach.areas.includes("frontend"))
-        {
+      const coaches = this.$store.getters['coaches/coaches'];
+      return coaches.filter((coach) => {
+        if (this.activeFilters.frontend && coach.areas.includes('frontend')) {
           return true;
         }
-        if(this.activeFilters.backend && coach.areas.includes("backend"))
-        {
+        if (this.activeFilters.backend && coach.areas.includes('backend')) {
           return true;
         }
-        if(this.activeFilters.career && coach.areas.includes("career"))
-        {
+        if (this.activeFilters.career && coach.areas.includes('career')) {
           return true;
         }
         return false;
-      })
+      });
     },
 
     hasCoaches() {
       return this.$store.getters['coaches/hasCoaches'];
     },
+    isCoach() {
+      return this.$store.getters['coaches/isCoach'];
+    },
   },
-  methods:{
-    setFilters(updatedFilters){
-      this.activeFilters=updatedFilters;
-    }
-  }
+  methods: {
+    setFilters(updatedFilters) {
+      this.activeFilters = updatedFilters;
+    },
+  },
 };
 </script>
 
