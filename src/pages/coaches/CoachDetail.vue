@@ -1,5 +1,5 @@
 <template>
-    <h1>Coach Details</h1>
+  <h1>Coach Details</h1>
   <section>
     <base-card>
       <h2>{{ fullName }}</h2>
@@ -28,7 +28,6 @@
       <p>{{ description }}</p>
     </base-card>
   </section>
-
 </template>
 
 <script>
@@ -41,7 +40,7 @@ export default {
   },
   computed: {
     fullName() {
-        // return "ok"
+      // return "ok"
       return this.selectedCoach.firstName + ' ' + this.selectedCoach.lastName;
     },
     areas() {
@@ -65,8 +64,8 @@ export default {
 };
 </script>
 <style scoped>
-h1{
-    color: rgba(56, 9, 122, 0.996);
-    text-align: center;
+h1 {
+  color: rgba(56, 9, 122, 0.996);
+  text-align: center;
 }
 </style>
