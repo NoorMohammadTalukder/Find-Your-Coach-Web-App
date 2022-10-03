@@ -5,7 +5,12 @@
 
     <div>
       <!-- <span v-for="area in areas" :key="area">{{ area }}</span> -->
-      <base-badge v-for="area in areas" :key="area" :type="area" :title="area"></base-badge>
+      <base-badge
+        v-for="area in areas"
+        :key="area"
+        :type="area"
+        :title="area"
+      ></base-badge>
     </div>
 
     <div class="actions">
@@ -30,6 +35,7 @@ export default {
     coachContactLink() {
       // return "/coaches/"+this.id+"/contact";
       return this.$route.path + '/' + this.id + '/contact';
+      // return this.$route.path + '/' + this.id + '/c';
     },
     coachDetailsLink() {
       // return "/coaches/"+this.id;

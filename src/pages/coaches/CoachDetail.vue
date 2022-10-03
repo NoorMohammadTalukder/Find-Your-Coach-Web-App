@@ -11,8 +11,10 @@
     <base-card>
       <header>
         <h2>Reach out Coach Now</h2>
-        <base-button link :to="contactLink">Contact</base-button>
+        <base-button link :to="contactLink">Contact Coach Now</base-button>
+        <!-- <base-button link to="/coaches">Contact Coach Now</base-button> -->
       </header>
+   
       <router-view></router-view>
     </base-card>
   </section>
@@ -53,7 +55,9 @@ export default {
       return this.selectedCoach.description;
     },
     contactLink() {
-      return this.$route + '/' + this.id + '/contact';
+      // return this.$route.path + '/' + this.id + '/contact';
+      return "/coaches"+ '/' + this.id + '/contact';
+      // return "/coaches"+ '/' + this.id + '/c';
     },
   },
   created() {
