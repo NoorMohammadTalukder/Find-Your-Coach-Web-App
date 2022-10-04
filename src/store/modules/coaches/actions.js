@@ -10,7 +10,7 @@ export default {
       hourlyRate: data.rate,
       areas: data.areas,
     };
-    const response=await fetch(
+    const response = await fetch(
       `https://vue-http-demo-4a8d2-default-rtdb.asia-southeast1.firebasedatabase.app/coaches/${userId}.json`,
       {
         method: 'PUT',
@@ -20,13 +20,40 @@ export default {
 
     // const responseData=await response.json();
 
-    if(!response.ok){
-        //
+    if (!response.ok) {
+      //
     }
     // context.commit('registerCoach', coachData);
     context.commit('registerCoach', {
-        ...coachData,
-        id:userId,
+      ...coachData,
+      id: userId,
     });
+  },
+
+  async loadCoaches(context) {
+    const response = await fetch(
+      `https://vue-http-demo-4a8d2-default-rtdb.asia-southeast1.firebasedatabase.app/coaches.json`
+    );
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      //
+    }
+
+    const coaches = [];
+
+    for (const key in responseData) {
+      const coach = {
+        id: key,
+        firstName: responseData[key].firstName,
+        lastName: responseData[key].lastName,
+        description: responseData[key].description,
+        hourlyRate: responseData[key].hourlyRate,
+        areas: responseData[key].areas,
+      };
+      coaches.push(coach);
+    }
+    context.commit('setCoaches',coaches)
   },
 };
