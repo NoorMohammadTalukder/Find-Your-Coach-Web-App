@@ -1,4 +1,10 @@
 <template>
+  <base-dialog :show="isError" title="An error occured" @close="handleError">
+    <p>{{error}}</p>
+  </base-dialog>
+  <!-- <base-dialog v-if="isError" >
+    <p>{{error}}</p>
+  </base-dialog> -->
   <section>
     <coach-filter @change-filter="setFilters"></coach-filter>
   </section>
@@ -8,11 +14,13 @@
       <div class="controls">
         <base-button :mode="outline" @click="loadCoaches">Refresh</base-button>
         <!-- <button>Refresh</button> -->
-        <base-button v-if="!isCoach && !isLoading" link to="/register">Register as Coach</base-button>
+        <base-button v-if="!isCoach && !isLoading" link to="/register"
+          >Register as Coach</base-button
+        >
         <!-- <router-link to="/register">Register as Coach</router-link> -->
       </div>
 
-      <div  v-if="isLoading">
+      <div v-if="isLoading">
         <base-spinner></base-spinner>
       </div>
 
@@ -39,16 +47,18 @@
 import CoachItem from '../../components/coaches/CoachItem.vue';
 import BaseButton from '../../components/ui/BaseButton.vue';
 import CoachFilter from '../../components/coaches/CoachFilter.vue';
-
+import BaseDialog from '../../components/ui/BaseDialog.vue';
 
 // import BaseCard from '../../components/ui/BaseCard.vue'
 export default {
-  components: { CoachItem, BaseButton, CoachFilter,  },
+  components: { CoachItem, BaseButton, CoachFilter, BaseDialog },
 
   data() {
     return {
-      isLoading:false,
-    // Loading:true,
+      isLoading: false,
+      // Loading:true,
+      error: null,
+      isError:false,
       activeFilters: {
         frontend: true,
         backend: true,
@@ -81,20 +91,30 @@ export default {
       return this.$store.getters['coaches/isCoach'];
     },
   },
-  created(){
+  created() {
     this.loadCoaches();
   },
   methods: {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
-    async loadCoaches(){
-      this.isLoading=true;
-      // console.log("1->"+ this.isLoading)
-      await this.$store.dispatch('coaches/loadCoaches');
-      this.isLoading=false;
+    async loadCoaches() {
+      this.isLoading = true;
+      try {
+        // console.log("1->"+ this.isLoading)
+        await this.$store.dispatch('coaches/loadCoaches');
+      } catch (error) {
+        this.error = error.message || 'Something went wrong';
+        this.isError=true;
+      }
+
+      this.isLoading = false;
       // console.log("2->"+ this.isLoading)
     },
+    handleError(){
+      this.error=null;
+      this.isError=false;
+    }
   },
 };
 </script>
