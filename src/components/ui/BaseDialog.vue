@@ -1,7 +1,8 @@
 <template>
     <teleport to="body">
       <div v-if="show" @click="tryClose" class="backdrop"></div>
-      <dialog open v-if="show">
+      <transition name="dialog">
+        <dialog open v-if="show">
         <header>
           <slot name="header">
             <h2>{{ title }}</h2>
@@ -16,6 +17,7 @@
           </slot>
         </menu>
       </dialog>
+      </transition>
     </teleport>
   </template>
   
@@ -95,7 +97,23 @@
     justify-content: flex-end;
     margin: 0;
   }
-  
+  .dialog-enter-from,
+  .dialog-leave-to{
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  .dialog-enter-active{
+    transition: all 0.4s ease-in;
+  }
+  .dialog-leave-active{
+    transition: all 0.4s ease-out;
+  }
+
+  .dialog-enter-to,
+  .dialog-leave-from{
+    opacity: 1;
+    transform: scale(1);
+  }
   @media (min-width: 768px) {
     dialog {
       left: calc(50% - 20rem);

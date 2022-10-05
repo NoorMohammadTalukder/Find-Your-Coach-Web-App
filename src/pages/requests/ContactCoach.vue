@@ -1,5 +1,6 @@
 <template>
-    <form @submit.prevent="submitForm">
+    <div>
+      <form @submit.prevent="submitForm">
       <div class="form-control">
         <label for="email">Enter Email</label>
         <input type="email" id="email" v-model.trim="email" />
@@ -15,6 +16,7 @@
         <base-button>Send Message</base-button>
       </div>
     </form>
+    </div>
   </template>
   
   <script>
