@@ -79,7 +79,11 @@ export default {
             email: this.email,
             password: this.password,
           });
+         
         }
+        const redirectUrl='/'+(this.$route.query.redirect || 'coaches');
+        this.$router.replace(redirectUrl);
+        // this.$router.replace('/coaches');
       } catch (err) {
         this.error = err.message || 'Failed to authenticate,try later';
         this.isError=true;
