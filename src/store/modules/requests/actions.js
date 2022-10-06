@@ -26,7 +26,8 @@ export default{
 
     async fetchRequest(context){
          const coachId=context.rootGetters.userId;
-        const response=await fetch(`https://vue-http-demo-4a8d2-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${coachId}.json`);
+         const token=context.rootGetters.token;
+        const response=await fetch(`https://vue-http-demo-4a8d2-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${coachId}.json?auth=`+token);
         // const response=await fetch(`https://vue-http-demo-4a8d2-default-rtdb.asia-southeast1.firebasedatabase.app/requests/c3.json`);
 
         const responseData=await response.json();
