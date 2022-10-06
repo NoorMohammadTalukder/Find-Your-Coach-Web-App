@@ -7,8 +7,10 @@ import CoachRegistration from './pages/coaches/CoachRegistration.vue';
 import ContactCoach from './pages/requests/ContactCoach.vue';
 // import C from './pages/requests/a.vue'
 import RequestReceived from './pages/requests/RequestReceived.vue';
+import UserAuth from './pages/auth/UserAuth.vue';
 
 import NotFound from './pages/NotFound.vue';
+
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -34,7 +36,7 @@ const router = createRouter({
     //   component: ContactCoach,
     //   props:true,
     //  },
-
+    {path:'/auth',component:UserAuth},
     { path: '/:notfound(.*)', component: NotFound },
   ],
 
