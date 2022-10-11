@@ -1,6 +1,6 @@
 # Find-Your-Coach-Web-App
 This is an web application where one can find his mentor and can communicate with mentor. 
-<h3>Live Website: https://capable-travesseiro-3bd602.netlify.app/#/coaches</h3>
+<h3>Live Website: https://incandescent-malabi-5cb1d8.netlify.app/#/coaches</h3>
 
 
 <h1>Screen Shots of the App</h1>
